@@ -19,7 +19,7 @@
 #include <freetype/freetype.h>
 #include <freetype/ftoutln.h>
 
-FT_Long GenerateGlyphAtlas(FT_Face face, int target_width, int target_height, unsigned char* data);
+FT_Long GenerateGlyphAtlas(FT_Face face, int char_offset, int target_width, int target_height, unsigned char* data);
 
 int main(int argc, char** argv)
 {
@@ -96,7 +96,7 @@ int main(int argc, char** argv)
 		int offset = 0;
 		GenerateGlyphAtlas(face, offset, ctx.width, ctx.height, img_data);
 
-		//stbi_write_png("C:/Users/riley/source/repos/CUDA_TTF_SDF/x64/Debug/test.png", ctx.width, ctx.height, ctx.numComponents, img_data, ctx.width * ctx.numComponents);
+		stbi_write_png("C:/Users/riley/source/repos/CUDA_TTF_SDF/x64/Debug/test.png", ctx.width, ctx.height, ctx.numComponents, img_data, ctx.width * ctx.numComponents);
 		ctx.CopyImage(img_data);
 		delete[] img_data;
 
@@ -131,11 +131,11 @@ int main(int argc, char** argv)
 
 FT_Long GenerateGlyphAtlas(FT_Face face, int char_offset, int target_width, int target_height, unsigned char* data)
 {
-	const int font_height = 24;
+	const int font_height = 64;
 
 	FT_Set_Pixel_Sizes(face, 0, font_height);
 
-	const int margin = 16;
+	const int margin = 8;
 	const int half_margin = margin / 2;
 
 	int current_height = half_margin;

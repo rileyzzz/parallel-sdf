@@ -15,6 +15,7 @@ namespace CUDA_SDF
 		int numComponents = 1;
 
 		unsigned char* data = nullptr;
+		float* sdf_data = nullptr;
 		unsigned char* out_data = nullptr;
 
 		~SDFGenerationContext();
